@@ -5,9 +5,10 @@ Django field choices made simple
 
 Why django-choice exists
 ========================
-django-choice exists because the official Django "way" is clunky (See `Official Django Documentation`_)::
+django-choice exists because the official Django "way" is clunky (See `Official Django Documentation`_)
 .. _Official Django Documentation: https://docs.djangoproject.com/en/2.0/ref/models/fields/#choices)
 
+::
     # models.py
     from django.db import models
 
@@ -30,14 +31,18 @@ django-choice exists because the official Django "way" is clunky (See `Official 
 
 How django-choice works
 =======================
-django-choices works in two steps, first create a `Choice` object in `choices.py`::
+django-choices works in two steps, first create a `Choice` object in `choices.py`
+
+::
     # choices
     from django_choice import DjangoChoice, DjangoChoices
 
     class ClassChoice(DjangoChoices):
         FRESHMAN = DjangoChoice('FR')
 
-and second, import your `Choice` into `models.py`::
+and second, import your `Choice` into `models.py`
+
+::
     # models.py
     from django.db import models
     from .choices import ClassChoice
@@ -52,14 +57,18 @@ and second, import your `Choice` into `models.py`::
 
 Publishing
 ==========
-PyPI::
+PyPI
 ----
+
+::
     python setup.py sdist
     python setup.py bdist_wheel
     twine upload dist/*
 
-GitHub::
+GitHub
 ------
+
+::
     git add .
     git commit -m 'message'
     git push
