@@ -121,7 +121,7 @@ So while :code:`GRADUATE` will persist, django-choice does not do anything speci
 
 (3) If no :code:`label` is provided, the attribute itself is assigned as the label
 
-    - By default, underscores (`_`) in attributes are replaced with spaces, and then title cased using :code:`title()`
+    * By default, underscores (`_`) in attributes are replaced with spaces, and then title cased using :code:`title()`
 
 .. code:: python
 
@@ -146,7 +146,7 @@ So while :code:`GRADUATE` will persist, django-choice does not do anything speci
 
 (5) By default, :code:`CHOICES` is sorted by the value of :code:`sort_value` (which, again, by default is the order in which they occur)
 
-    - However, defined :code:`DjangoChoices` can define a single-argument :code:`@staticmethod` named :code:`sort_by` to modify this behavior
+    * However, defined :code:`DjangoChoices` can define a single-argument :code:`@staticmethod` named :code:`sort_by` to modify this behavior
 
 .. code:: python
 
