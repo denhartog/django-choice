@@ -6,9 +6,9 @@ from setuptools import (
 
 setup(
     name='django-choice',
-    version='1.0.1',
-    keyword='django model form field choice',
-    description='Django field choices made simple',
+    version='1.0.2',
+    keyword='django choice field model form',
+    description='Choices made simple for Django model and form fields',
     url='https://github.com/denhartog/django-choice/',
     classifiers=[
         'Framework :: Django',

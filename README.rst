@@ -1,7 +1,14 @@
 =============
 django-choice
 =============
-Django field choices made simple
+Choices made simple for Django model and form fields
+
+Installing
+==========
+
+.. code::
+
+    pip install django-choice
 
 Why django-choice exists
 ========================
