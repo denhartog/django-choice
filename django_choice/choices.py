@@ -12,7 +12,7 @@ class DjangoChoice:
     ):
         self.value = value
         self.label = label
-        self.sort_value = (
+        self.sort_value = int(
             sort_value
             if sort_value is not None else
             DjangoChoice.sort_value
@@ -43,11 +43,11 @@ class DjangoChoiceMetaclass(type):
             if isinstance(choice, DjangoChoice)
         }
         for attr, choice in _choices.items():
-            # versus custom __*__ for every type (e.g. __int__, et cetera)
-            # or requiring MyClass.MY_CONSTANT.value
-            setattr(self, attr, choice.value, )
             if choice.value is None:
                 choice.value = attr.lower()
+            # versus custom __*__ for every type (e.g. __int__, et cetera)
+            # or requiring MyClass.MY_CONSTANT.value
+            setattr(self, attr, choice.value)
             if choice.label is None:
                 choice.label = attr.replace('_', ' ').title()
         # permit get_choice()

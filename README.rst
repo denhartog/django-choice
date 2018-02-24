@@ -38,6 +38,9 @@ Why django-choice exists
             default=FRESHMAN,
         )
 
+        def is_upperclass(self):
+            return self.year_in_school in (self.JUNIOR, self.SENIOR)
+
 How django-choice works
 =======================
 **django-choice** works in two (2) steps, first create a :code:`Choices` object in :code:`choices.py`
@@ -67,6 +70,12 @@ and second, import your :code:`Choices` object into :code:`models.py`
         choices=StudentYearChoice.CHOICES,
         default=StudentYearChoice.FRESHMAN,
     )
+
+    def is_upperclass(self):
+        return self.year_in_school in (
+            StudentYearChoice.JUNIOR,
+            StudentYearChoice.SENIOR,
+        )
 
 because :code:`StudentYearChoice.CHOICES` is
 
@@ -254,7 +263,7 @@ and are accessible through :code:`from_value`
 
 from_value()
 ------------
-`from_value()` comes in handy when working with Django models and forms
+:code:`from_value()` comes in handy when working with Django models and forms
 
 .. code:: python
 
@@ -287,6 +296,50 @@ from_value()
             has_senioritis = StudentYearChoice.from_value(self.cleaned_data['year_in_school']).has_senioritis
             return
 
+Why I created django-choice
+---------------------------
+Because I often found myself mapping field choices to python objects, but now I can encapsulate that relationship in the choice itself
+
+.. code:: python
+
+    # choices.py
+    from django_choice import DjangoChoice, DjangoChoices
+    from .example import ThingFR, ThingSO, ThingJR, ThingSR
+
+    class StudentYearChoice(DjangoChoices):
+        FRESHMAN = DjangoChoice('FR', 'Frosh', to_python=ThingFR)
+        SOPHOMORE = DjangoChoice('SO', 'Soph', to_python=ThingSO)
+        JUNIOR = DjangoChoice('JR', to_python=ThingJR)
+        SENIOR = DjangoChoice('SR', to_python=ThingSR)
+
+    # forms.py
+    from .choices import StudentYearChoice
+
+    class StudentForm(forms.Form):
+        year_in_school = forms.ChoiceField(
+            choices=StudentYearChoice.CHOICES,
+            initial=StudentYearChoice.FRESHMAN,
+        )
+
+        def clean_year_in_school(self):
+            return StudentYearChoice.from_value(self.cleaned_data['year_in_school']).to_python
+
+where I used to have to do something like this:
+
+.. code:: python
+
+    # forms.py
+    def clean_year_in_school(self):
+        mapping = {
+            StudentYearChoice.FRESHMAN: ThingFR,
+            StudentYearChoice.SOPHOMORE: ThingSO,
+            StudentYearChoice.JUNIOR: ThingJR,
+            StudentYearChoice.SENIOR: ThingSR,
+        }
+        return mapping[self.cleaned_data['year_in_school']]
+
+but I would create a :code:`mappings.py` file because this mapping was used in multiple places where I would have to import both :code:`mappings` and :code:`choices`
+
 Quick References
 ================
 
@@ -314,6 +367,10 @@ http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
 Change Log
 ==========
+1.0.3
+-----
+* fixed DjangoChoiceMetaclass :code:`setattr()` bug with default :code:`value`
+
 1.0.2
 -----
 * set default auto-increment behavior for :code:`sort_value`
