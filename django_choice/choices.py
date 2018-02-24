@@ -1,6 +1,8 @@
 
 
 class DjangoChoice:
+    sort_value = 0
+
     def __init__(
         self,
         value=None,
@@ -10,11 +12,13 @@ class DjangoChoice:
     ):
         self.value = value
         self.label = label
-        self.sort_value = str(
+        self.sort_value = (
             sort_value
             if sort_value is not None else
-            label or ''
+            DjangoChoice.sort_value
         )
+        DjangoChoice.sort_value += 1
+
         for attr, value in kwargs.items():
             setattr(self, attr, value)
 
@@ -32,7 +36,6 @@ class DjangoChoiceMetaclass(type):
     ):
         # permits subclasses of subclasses
         super().__init__(name, bases, attrs)
-        print(self)
         # get the new choices
         _choices = {
             attr: choice
