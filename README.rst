@@ -10,6 +10,7 @@ django-choice exists because the official Django "way" is clunky (See `Official 
 .. _`Official Django Documentation`: https://docs.djangoproject.com/en/2.0/ref/models/fields/#choices
 
 .. code:: python
+
     # models.py
     from django.db import models
 
@@ -35,6 +36,7 @@ How django-choice works
 django-choices works in two steps, first create a `Choice` object in `choices.py`
 
 .. code:: python
+
     # choices
     from django_choice import DjangoChoice, DjangoChoices
 
@@ -44,6 +46,7 @@ django-choices works in two steps, first create a `Choice` object in `choices.py
 and second, import your `Choice` into `models.py`
 
 .. code:: python
+
     # models.py
     from django.db import models
     from .choices import ClassChoice
@@ -62,6 +65,7 @@ PyPI
 ----
 
 .. code:: python
+
     python setup.py sdist
     python setup.py bdist_wheel
     twine upload dist/*
@@ -70,6 +74,7 @@ GitHub
 ------
 
 .. code:: python
+
     git add .
     git commit -m 'message'
     git push
