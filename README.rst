@@ -65,17 +65,17 @@ and second, import your :code:`Choices` object into :code:`models.py`
     from .choices import StudentYearChoice
 
     class Student(models.Model):
-    year_in_school = models.CharField(
-        max_length=2,
-        choices=StudentYearChoice.CHOICES,
-        default=StudentYearChoice.FRESHMAN,
-    )
-
-    def is_upperclass(self):
-        return self.year_in_school in (
-            StudentYearChoice.JUNIOR,
-            StudentYearChoice.SENIOR,
+        year_in_school = models.CharField(
+            max_length=2,
+            choices=StudentYearChoice.CHOICES,
+            default=StudentYearChoice.FRESHMAN,
         )
+
+        def is_upperclass(self):
+            return self.year_in_school in (
+                StudentYearChoice.JUNIOR,
+                StudentYearChoice.SENIOR,
+            )
 
 because :code:`StudentYearChoice.CHOICES` is
 
@@ -255,10 +255,12 @@ and are accessible through :code:`from_value`
 .. code:: python
 
     # shell
-    >>> print(StudentYearChoice.from_value(StudentYearChoice.JUNIOR).example('hi'))
+    >>> print(StudentYearChoice.from_value(
+        StudentYearChoice.JUNIOR).example('hi'))
     HI
 
-    >>> print(StudentYearChoice.from_value(StudentYearChoice.SENIOR).has_senioritis)
+    >>> print(StudentYearChoice.from_value(
+        StudentYearChoice.SENIOR).has_senioritis)
     True
 
 from_value()
@@ -272,7 +274,8 @@ from_value()
     from .models import Student
 
     student = Student.objects.filter(year_in_school=StudentYearChoice.SENIOR)
-    has_senioritis = StudentYearChoice.from_value(student.year_in_school).has_senioritis
+    has_senioritis = StudentYearChoice.from_value(
+        student.year_in_school).has_senioritis
 
     >>> print(has_senioritis)
     True
@@ -289,11 +292,13 @@ from_value()
         )
 
         def clean_year_in_school(self):
-            has_senioritis = StudentYearChoice.from_value(self.cleaned_data['year_in_school']).has_senioritis
+            has_senioritis = StudentYearChoice.from_value(
+                self.cleaned_data['year_in_school']).has_senioritis
             return
 
         def clean(self):
-            has_senioritis = StudentYearChoice.from_value(self.cleaned_data['year_in_school']).has_senioritis
+            has_senioritis = StudentYearChoice.from_value(
+                self.cleaned_data['year_in_school']).has_senioritis
             return
 
 Why I created django-choice
@@ -322,7 +327,8 @@ Because I often found myself mapping field choices to python objects, but now I 
         )
 
         def clean_year_in_school(self):
-            return StudentYearChoice.from_value(self.cleaned_data['year_in_school']).to_python
+            return StudentYearChoice.from_value(
+                self.cleaned_data['year_in_school']).to_python
 
 where I used to have to do something like this:
 
