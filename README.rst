@@ -5,7 +5,7 @@ Django field choices made simple
 
 Why django-choice exists
 ========================
-django-choice exists because the official Django "way" is clunky (taken verbatim from the `Official Django Documentation`_)
+django-choice exists because the official Django "way" is clunky (taken verbatim from the :code:`Official Django Documentation`_)
 
 .. _`Official Django Documentation`: https://docs.djangoproject.com/en/2.0/ref/models/fields/#choices
 
@@ -33,7 +33,7 @@ django-choice exists because the official Django "way" is clunky (taken verbatim
 
 How django-choice works
 =======================
-django-choices works in two (2) steps, first create a `Choices` object in `choices.py`
+django-choices works in two (2) steps, first create a :code:`Choices` object in :code:`choices.py`
 
 .. code:: python
 
@@ -46,7 +46,7 @@ django-choices works in two (2) steps, first create a `Choices` object in `choic
         JUNIOR = DjangoChoice('JR')
         SENIOR = DjangoChoice('SR')
 
-and second, import your `Choices` object into `models.py`
+and second, import your :code:`Choices` object into :code:`models.py`
 
 .. code:: python
 
@@ -61,7 +61,7 @@ and second, import your `Choices` object into `models.py`
         default=StudentYearChoice.FRESHMAN,
     )
 
-because `StudentYearChoice.CHOICES` is
+because :code:`StudentYearChoice.CHOICES` is
 
 .. code:: python
 
@@ -74,7 +74,7 @@ because `StudentYearChoice.CHOICES` is
         ('SR', 'Senior'),
     ]
 
-and `StudentYearChoice.FRESHMAN` is
+and :code:`StudentYearChoice.FRESHMAN` is
 
 .. code:: python
 
@@ -88,11 +88,12 @@ But wait! There's more!
 =======================
 Default behavior
 ----------------
+
 By default, *django-choice* does five (5) things:
 
-(1) Looks for class attributes that are instances of `DjangoChoice`
+(1) Looks for class attributes that are instances of :code:`DjangoChoice`
 
-So while `GRADUATE` will persist, django-choice does not do anything special to `GRADUATE`
+So while :code:`GRADUATE` will persist, django-choice does not do anything special to :code:`GRADUATE` (meaning default Python class attribute behaviors apply)
 
 .. code:: python
 
@@ -106,11 +107,14 @@ So while `GRADUATE` will persist, django-choice does not do anything special to 
         SENIOR = DjangoChoice()
         GRADUATE = True
 
-(2) If no `value` is provided, the attribute itself is assigned as the value
+    >>> print(StudentYearChoice.GRADUATE)
+    True
 
-(3) If no `label` is provided, the attribute itself is assigned as the label
+(2) If no :code:`value` is provided, the attribute itself is assigned as the value
 
-- By default, underscores (`_`) in attributes are replaced with spaces (` `), and then titled cased using `title()`
+(3) If no :code:`label` is provided, the attribute itself is assigned as the label
+
+    - By default, underscores (`_`) in attributes are replaced with spaces, and then title cased using :code:`title()`
 
 .. code:: python
 
@@ -131,11 +135,11 @@ So while `GRADUATE` will persist, django-choice does not do anything special to 
         ('senior', 'Senior'),
     ]
 
-(4) If no `sort_value` is provided, the sort_value is auto-incremented by 1 resulting in `DjangoChoice` objects being sorted in the order in which they are defined
+(4) If no :code:`sort_value` is provided, the sort_value is auto-incremented by 1; resulting in :code:`DjangoChoice` objects being sorted in the order in which they are defined
 
-(5) By default, `CHOICES` is sorted by the value of `sort_value` (which, again, by default is the order in which they occur)
+(5) By default, :code:`CHOICES` is sorted by the value of :code:`sort_value` (which, again, by default is the order in which they occur)
 
-- However, defined `DjangoChoices` can define a single-argument `@staticmethod` named `sort_by` to modify this behavior
+    - However, defined :code:`DjangoChoices` can define a single-argument :code:`@staticmethod` named :code:`sort_by` to modify this behavior
 
 .. code:: python
 
@@ -214,7 +218,7 @@ Custom ordering
 
 Custom attributes
 -----------------
-Unnamed `__init__(**kwargs)` become attributes of `DjangoChoice` instances, which are accessible through `from_value`
+Unnamed :code:`__init__(**kwargs)` become attributes of :code:`DjangoChoice` instances
 
 .. code:: python
 
@@ -227,6 +231,10 @@ Unnamed `__init__(**kwargs)` become attributes of `DjangoChoice` instances, whic
         JUNIOR = DjangoChoice('JR', sort_value=1, example=lambda x: x.upper())
         SENIOR = DjangoChoice('SR', sort_value=0, has_senioritis=True)
 
+and are accessible through :code:`from_value`
+
+.. code:: python
+
     # shell
     >>> print(StudentYearChoice.from_value(StudentYearChoice.JUNIOR).example('hi'))
     HI
@@ -234,6 +242,8 @@ Unnamed `__init__(**kwargs)` become attributes of `DjangoChoice` instances, whic
     >>> print(StudentYearChoice.from_value(StudentYearChoice.SENIOR).has_senioritis)
     True
 
+from_value()
+------------
 `from_value()` comes in handy when working with Django models and forms
 
 .. code:: python
