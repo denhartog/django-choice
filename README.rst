@@ -5,7 +5,7 @@ Django field choices made simple
 
 Why django-choice exists
 ========================
-django-choice exists because the official Django "way" is clunky (See `Official Django Documentation`_)
+django-choice exists because the official Django "way" is clunky (taken verbatim from the `Official Django Documentation`_)
 
 .. _`Official Django Documentation`: https://docs.djangoproject.com/en/2.0/ref/models/fields/#choices
 
@@ -33,11 +33,11 @@ django-choice exists because the official Django "way" is clunky (See `Official 
 
 How django-choice works
 =======================
-django-choices works in two steps, first create a `Choice` object in `choices.py`
+django-choices works in two (2) steps, first create a `Choices` object in `choices.py`
 
 .. code:: python
 
-    # choices
+    # choices.py
     from django_choice import DjangoChoice, DjangoChoices
 
     class StudentYearChoice(DjangoChoices):
@@ -46,7 +46,7 @@ django-choices works in two steps, first create a `Choice` object in `choices.py
         JUNIOR = DjangoChoice('JR')
         SENIOR = DjangoChoice('SR')
 
-and second, import your `Choice` into `models.py`
+and second, import your `Choices` object into `models.py`
 
 .. code:: python
 
@@ -81,6 +81,8 @@ and `StudentYearChoice.FRESHMAN` is
     # shell
     >>> print(StudentYearChoice.FRESHMAN)
     FR
+
+which results in the same basic behavior as the default Django way, but now choices are objectified, encapsulated, and can be easily extended
 
 But wait! There's more!
 =======================
