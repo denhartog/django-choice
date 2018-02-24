@@ -40,7 +40,7 @@ Why django-choice exists
 
 How django-choice works
 =======================
-django-choices works in two (2) steps, first create a :code:`Choices` object in :code:`choices.py`
+**django-choice** works in two (2) steps, first create a :code:`Choices` object in :code:`choices.py`
 
 .. code:: python
 
@@ -100,7 +100,7 @@ By default, **django-choice** does five (5) things:
 
 (1) Looks for class attributes that are instances of :code:`DjangoChoice`
 
-So while :code:`GRADUATE` will persist, django-choice does not do anything special to :code:`GRADUATE` (meaning default Python class attribute behaviors apply)
+So while :code:`GRADUATE` will persist, **django-choice** does not do anything special to :code:`GRADUATE` (meaning default Python class attribute behaviors apply)
 
 .. code:: python
 
