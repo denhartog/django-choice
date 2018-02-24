@@ -1,0 +1,4 @@
+[run]
+include =
+    django-choice/__init__.py
+    django-choice/choices.py
