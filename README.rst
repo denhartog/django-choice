@@ -284,8 +284,9 @@ from_value()
             has_senioritis = StudentYearChoice.from_value(self.cleaned_data['year_in_school']).has_senioritis
             return
 
-Publishing
-==========
+Quick References
+================
+
 PyPI
 ----
 
@@ -304,8 +305,20 @@ GitHub
     git commit -m 'message'
     git push
 
+reStructuredText
+----------------
+http://docutils.sourceforge.net/docs/user/rst/quickref.html
+
 Change Log
 ==========
+1.0.2
+-----
+* set default auto-increment behavior for :code:`sort_value`
+
+1.0.1
+-----
+* renamed python module
+
 1.0.0
 -----
 * initial release
