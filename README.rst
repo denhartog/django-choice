@@ -42,6 +42,9 @@ django-choices works in two steps, first create a `Choice` object in `choices.py
 
     class ClassChoice(DjangoChoices):
         FRESHMAN = DjangoChoice('FR')
+        SOPHOMORE = DjangoChoice('SO')
+        JUNIOR = DjangoChoice('JR')
+        SENIOR = DjangoChoice('SR')
 
 and second, import your `Choice` into `models.py`
 
@@ -54,9 +57,54 @@ and second, import your `Choice` into `models.py`
     class Student(models.Model):
     year_in_school = models.CharField(
         max_length=2,
-        choices=ClassChoice,
+        choices=ClassChoice.CHOICES,
         default=ClassChoice.FRESHMAN,
     )
+
+But wait! There's more!
+=======================
+Custom labels
+-------------
+
+.. code:: python
+
+    # choices
+    from django_choice import DjangoChoice, DjangoChoices
+
+    class ClassChoice(DjangoChoices):
+        FRESHMAN = DjangoChoice('FR', 'Fresh')
+        SOPHOMORE = DjangoChoice('SO', 'Soph')
+        JUNIOR = DjangoChoice('JR', 'Junior')
+        SENIOR = DjangoChoice('SR', 'Senior')
+
+Custom ordering
+---------------
+
+.. code:: python
+
+    # choices
+    from django_choice import DjangoChoice, DjangoChoices
+
+    class ClassChoice(DjangoChoices):
+        FRESHMAN = DjangoChoice('FR', 'Fresh', 3)
+        SOPHOMORE = DjangoChoice('SO', 'Soph', 2)
+        JUNIOR = DjangoChoice('JR', 'Junior', 1)
+        SENIOR = DjangoChoice('SR', 'Senior', 0)
+
+Custom attributes
+-----------------
+
+.. code:: python
+
+    # choices
+    from django_choice import DjangoChoice, DjangoChoices
+
+    class ClassChoice(DjangoChoices):
+        FRESHMAN = DjangoChoice('FR', 'Fresh', 3)
+        SOPHOMORE = DjangoChoice('SO', 'Soph', 2)
+        JUNIOR = DjangoChoice('JR', 'Junior', 1)
+        SENIOR = DjangoChoice('SR', 'Senior', 0, has_senioritis=True)
+
 
 
 Publishing
@@ -64,7 +112,7 @@ Publishing
 PyPI
 ----
 
-.. code:: python
+.. code::
 
     python setup.py sdist
     python setup.py bdist_wheel
@@ -73,7 +121,7 @@ PyPI
 GitHub
 ------
 
-.. code:: python
+.. code::
 
     git add .
     git commit -m 'message'
