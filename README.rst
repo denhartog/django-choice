@@ -12,7 +12,7 @@ Installing
 
 Why django-choice exists
 ========================
-django-choice exists because the official Django "way" is clunky (taken verbatim from the :code:`Official Django Documentation`_)
+**django-choice** exists because the official Django "way" is clunky (taken verbatim from the `Official Django Documentation`_)
 
 .. _`Official Django Documentation`: https://docs.djangoproject.com/en/2.0/ref/models/fields/#choices
 
@@ -96,7 +96,7 @@ But wait! There's more!
 Default behavior
 ----------------
 
-By default, *django-choice* does five (5) things:
+By default, **django-choice** does five (5) things:
 
 (1) Looks for class attributes that are instances of :code:`DjangoChoice`
 
