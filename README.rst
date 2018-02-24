@@ -104,7 +104,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
 
 .. code:: python
 
-    # choices
+    # choices.py
     from django_choice import DjangoChoice, DjangoChoices
 
     class StudentYearChoice(DjangoChoices):
@@ -114,6 +114,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
         SENIOR = DjangoChoice()
         GRADUATE = True
 
+    # shell
     >>> print(StudentYearChoice.GRADUATE)
     True
 
@@ -125,7 +126,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
 
 .. code:: python
 
-    # choices
+    # choices.py
     from django_choice import DjangoChoice, DjangoChoices
 
     class StudentYearChoice(DjangoChoices):
@@ -134,6 +135,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
         JUNIOR = DjangoChoice()
         SENIOR = DjangoChoice()
 
+    # shell
     >>> print(StudentYearChoice.CHOICES)
     [
         ('fresh_man', 'Fresh Man'),
@@ -150,7 +152,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
 
 .. code:: python
 
-    # choices
+    # choices.py
     from django_choice import DjangoChoice, DjangoChoices
 
     class StudentYearChoice(DjangoChoices):
@@ -165,6 +167,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
             # NOTE: this can access any kwarg turned attribute (which we cover later)
             return choice.value
 
+    # shell
     >>> print(StudentYearChoice.CHOICES)
     [
         ('FR', 'Freshman'),
@@ -182,7 +185,7 @@ Custom labels
 
 .. code:: python
 
-    # choices
+    # choices.py
     from django_choice import DjangoChoice, DjangoChoices
 
     class StudentYearChoice(DjangoChoices):
@@ -205,7 +208,7 @@ Custom ordering
 
 .. code:: python
 
-    # choices
+    # choices.py
     from django_choice import DjangoChoice, DjangoChoices
 
     class StudentYearChoice(DjangoChoices):
@@ -229,7 +232,7 @@ Unnamed :code:`__init__(**kwargs)` become attributes of :code:`DjangoChoice` ins
 
 .. code:: python
 
-    # choices
+    # choices.py
     from django_choice import DjangoChoice, DjangoChoices
 
     class StudentYearChoice(DjangoChoices):
@@ -255,7 +258,7 @@ from_value()
 
 .. code:: python
 
-    # models
+    # shell
     from .choices import StudentYearChoice
     from .models import Student
 
