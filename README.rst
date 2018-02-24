@@ -178,7 +178,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
 
 Custom values
 -------------
-All examples have been using custom values (e.g. 'FR', 'SO', et cetera)
+Most examples thus far have been using custom values (e.g. 'FR', 'SO', et cetera)
 
 Custom labels
 -------------
