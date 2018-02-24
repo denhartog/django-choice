@@ -66,7 +66,7 @@ because `StudentYearChoice.CHOICES` is
 .. code:: python
 
     # shell
-    >>> print(StudentYearChoice)
+    >>> print(StudentYearChoiceself.CHOICES)
     [
         ('FR', 'Freshman'),
         ('SO', 'Sophomore'),
@@ -89,6 +89,7 @@ But wait! There's more!
 Default behavior
 ----------------
 By default, *django-choice* does five (5) things:
+
 (1) Looks for class attributes that are instances of `DjangoChoice`
 
 So while `GRADUATE` will persist, django-choice does not do anything special to `GRADUATE`
@@ -106,7 +107,9 @@ So while `GRADUATE` will persist, django-choice does not do anything special to 
         GRADUATE = True
 
 (2) If no `value` is provided, the attribute itself is assigned as the value
+
 (3) If no `label` is provided, the attribute itself is assigned as the label
+
 - By default, underscores (`_`) in attributes are replaced with spaces (` `), and then titled cased using `title()`
 
 .. code:: python
@@ -129,7 +132,9 @@ So while `GRADUATE` will persist, django-choice does not do anything special to 
     ]
 
 (4) If no `sort_value` is provided, the sort_value is auto-incremented by 1 resulting in `DjangoChoice` objects being sorted in the order in which they are defined
+
 (5) By default, `CHOICES` is sorted by the value of `sort_value` (which, again, by default is the order in which they occur)
+
 - However, defined `DjangoChoices` can define a single-argument `@staticmethod` named `sort_by` to modify this behavior
 
 .. code:: python
