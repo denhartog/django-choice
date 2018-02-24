@@ -117,7 +117,7 @@ So while :code:`GRADUATE` will persist, **django-choice** does not do anything s
     >>> print(StudentYearChoice.GRADUATE)
     True
 
-(2) If no :code:`value` is provided, the attribute itself is assigned as the value
+(2) If no :code:`value` is provided, the attribute itself is assigned as the value, and then lowercased using :code:`lower()`
 
 (3) If no :code:`label` is provided, the attribute itself is assigned as the label
 
