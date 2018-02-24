@@ -1,13 +1,13 @@
 =============
 django-choice
 =============
---------------------------------
 Django field choices made simple
---------------------------------
 
 Why django-choice exists
 ========================
-django-choice exists because the official Django "way" is clunky (See .. _Official Django Documentation: https://docs.djangoproject.com/en/2.0/ref/models/fields/#choices)::
+django-choice exists because the official Django "way" is clunky (See `Official Django Documentation`_)::
+.. _Official Django Documentation: https://docs.djangoproject.com/en/2.0/ref/models/fields/#choices)
+
     # models.py
     from django.db import models
 
